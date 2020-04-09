@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/08 13:56:41 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/09 17:43:24 by tbruinem      ########   odam.nl         */
+/*   Updated: 2020/04/09 18:36:25 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int		main(int argc, char **argv)
 		line = NULL;
 		fd_num = (rand() % (argc - 1));
 	}
-	print_line(data, line, namepadding, fd_num);
 	data_cleanup(line, &data);
 	return (0);
 }

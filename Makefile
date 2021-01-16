@@ -6,7 +6,7 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/04/09 14:57:35 by tbruinem      #+#    #+#                  #
-#    Updated: 2021/01/16 16:46:40 by tbruinem      ########   odam.nl          #
+#    Updated: 2021/01/16 17:05:28 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ BONUS = 0
 NAME = gnltest
 INCL_DIR = ./incl
 SRC_DIR = ./src/
-OBJ_DIR = ./obj/
+# OBJ_DIR = ./obj/
 
 GNL_SRC :=	get_next_line \
 			get_next_line_utils
@@ -36,30 +36,36 @@ GNL_SRC :=	$(addsuffix _bonus, $(GNL_SRC))
 endif
 GNL_SRC :=	$(addsuffix .c, $(GNL_SRC))
 
+FLAGS :=
+
 SRC =	fd.c \
 		main.c \
 		utils.c
 
-OBJ = $(SRC:%.c=%.o)
+OBJ = $(SRC:%.c=obj/%.o)
+
+ifdef DEBUG
+	FLAGS += -g -fsanitize=address
+endif
 
 #----------------------------------RULES---------------------------------------
 
 all: $(NAME)
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+obj/%.o: src/%.c
 	@mkdir -p $(@D)
-	$(CC) -D READEMPTYFD=$(READEMPTYFD) -D BUFFER_SIZE=$(BUFFER_SIZE) \
+	$(CC) $(FLAGS) -D READEMPTYFD=$(READEMPTYFD) -D BUFFER_SIZE=$(BUFFER_SIZE) \
 	-c -I $(INCL_DIR) -I $(GNL_DIR) $< -o $@
 
 GNL:
 	make -C $(GNL_DIR)
 
-$(NAME): $(addprefix $(OBJ_DIR), $(OBJ))
-	gcc -D READEMPTYFD=$(READEMPTYFD) -I $(INCL_DIR) \
+$(NAME): $(OBJ)
+	$(CC) $(FLAGS) -D READEMPTYFD=$(READEMPTYFD) -I $(INCL_DIR) \
 	-I $(GNL_DIR) $(GNL_SRC) -D BUFFER_SIZE=$(BUFFER_SIZE) $^ -o $(NAME)
 
 clean:
-	rm -rf $(addprefix $(OBJ_DIR), $(OBJ))
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)

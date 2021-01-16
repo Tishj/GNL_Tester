@@ -6,14 +6,14 @@
 #    By: tbruinem <tbruinem@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/04/09 14:57:35 by tbruinem      #+#    #+#                  #
-#    Updated: 2020/04/09 18:35:40 by tbruinem      ########   odam.nl          #
+#    Updated: 2021/01/16 16:46:40 by tbruinem      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 #----------------------------------USERPREFS-----------------------------------
 
-GNL_DIR = ../lily_gnl/
-GNL_INCL = ./incl/
+GNL_DIR = ../gnl/
+GNL_INCL = ./
 
 #----------------------------------FLAGS---------------------------------------
 
@@ -47,6 +47,7 @@ OBJ = $(SRC:%.c=%.o)
 all: $(NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@mkdir -p $(@D)
 	$(CC) -D READEMPTYFD=$(READEMPTYFD) -D BUFFER_SIZE=$(BUFFER_SIZE) \
 	-c -I $(INCL_DIR) -I $(GNL_DIR) $< -o $@
 

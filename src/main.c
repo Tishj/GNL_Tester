@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/08 13:56:41 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/09 18:36:25 by tbruinem      ########   odam.nl         */
+/*   Updated: 2021/06/19 13:28:55 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		main(int argc, char **argv)
 	printf("BUFFERSIZE: %d | READEMPTYFD: %d\n", BUFFER_SIZE, READEMPTYFD);
 	if (initial_checks(&data, argc, argv) == 1)
 		return (1);
+	srand(time(NULL));
 	namepadding = get_longestname(data.fdnames);
 	while (fds_notempty(data.returnval, argc - 1))
 	{

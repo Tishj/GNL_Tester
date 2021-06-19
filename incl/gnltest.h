@@ -6,7 +6,7 @@
 /*   By: tbruinem <tbruinem@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/09 11:58:33 by tbruinem      #+#    #+#                 */
-/*   Updated: 2020/04/09 17:40:08 by tbruinem      ########   odam.nl         */
+/*   Updated: 2021/06/19 13:29:22 by tbruinem      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <time.h>
 
 typedef struct	s_fddata
 {
